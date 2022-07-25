@@ -16,8 +16,7 @@ export const createTheme = () => {
       },
       background: {
         default: '#0b3438',
-        paper: '#05151d',
-        iconButton: 'rgba(238,239,239, 0.2)'
+        paper: '#05151d'
       }
     },
     components,
