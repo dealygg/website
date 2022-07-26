@@ -6,6 +6,14 @@ export const typography = {
     fontWeight: 500,
     fontSize: '1.875rem',
     lineHeight: '1.5'
+  },
+  subtitle1: {
+    fontSize: '1rem',
+    fontWeight: '400'
+  },
+  subtitle2: {
+    fontSize: '0.875rem',
+    fontWeight: '400'
   }
 }
 

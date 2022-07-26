@@ -1,13 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Box, Grid, IconButton as MuiIconButton, Stack } from '@mui/material'
-import { styled } from '@mui/material'
+import {
+  Box,
+  Grid,
+  IconButton as MuiIconButton,
+  Stack,
+  styled
+} from '@mui/material'
 import Image from 'mui-image'
 import logo from 'assets/images/logo/logo.png'
-import { FaPlaystation } from 'react-icons/fa'
+import { FaSteam, FaPlaystation, FaXbox } from 'react-icons/fa'
 import { BiDonateHeart } from 'react-icons/bi'
 import { AiFillGift } from 'react-icons/ai'
 import { IoLanguage } from 'react-icons/io5'
+import { SelectPlatformModal } from 'features'
+import { setIsSelectPlatformModalOpened } from 'store/slices/modalSlice'
+import { useAppDispatch, useAppSelector } from 'hooks/store'
+import { PLATFORMS } from 'consts'
 
 const IconButton = styled(MuiIconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -17,13 +26,16 @@ const IconButton = styled(MuiIconButton)(({ theme }) => ({
 }))
 
 const Header = () => {
+  const { selectedPlatform } = useAppSelector((state) => state.platform)
+  const dispatch = useAppDispatch()
+
   return (
     <Grid
       item
       xs={12}
       sx={{
         display: 'flex',
-        py: 2
+        p: 2
       }}
     >
       <Box
@@ -35,8 +47,12 @@ const Header = () => {
       </Box>
       <Box flexGrow={1} />
       <Stack direction="row" spacing={1}>
-        <IconButton>
-          <FaPlaystation />
+        <IconButton
+          onClick={() => dispatch(setIsSelectPlatformModalOpened(true))}
+        >
+          {selectedPlatform === PLATFORMS.STEAM && <FaSteam />}
+          {selectedPlatform === PLATFORMS.PLAYSTATION && <FaPlaystation />}
+          {selectedPlatform === PLATFORMS.XBOX && <FaXbox />}
         </IconButton>
         <IconButton>
           <BiDonateHeart />
@@ -48,6 +64,7 @@ const Header = () => {
           <IoLanguage />
         </IconButton>
       </Stack>
+      <SelectPlatformModal />
     </Grid>
   )
 }
