@@ -90,7 +90,10 @@ export const SelectPlatformModal = () => {
       </DialogTitle>
       <DialogContent
         sx={{
-          minWidth: 350,
+          minWidth: {
+            xs: 300,
+            sm: 350
+          },
           my: 4,
           padding: 2
         }}

@@ -27,10 +27,10 @@ export const DailyDeals = () => {
     <Grid item xs={12}>
       <Card>
         <Grid container>
-          <Grid item sm={4}>
+          <Grid item xs={12} md={4}>
             <Image src={isSuccess && backgroundToDisplay(selectedPlatform)} />
           </Grid>
-          <Grid item sm={8}>
+          <Grid item xs={12} md={8}>
             {isSuccess &&
               dailyDealsToMap(selectedPlatform).map((item: any) => {
                 return (

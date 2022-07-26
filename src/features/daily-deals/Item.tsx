@@ -15,20 +15,40 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
         }
       }}
     >
-      <Grid item xs={1}>
+      <Grid item xs={2} sm={1}>
         <Image src={icon} height={40} width={40} />
       </Grid>
       <Grid
         item
-        xs={4}
+        xs={3}
+        md={4}
         sx={{
           pl: 1
         }}
       >
-        <Typography noWrap variant="subtitle2" component="h2">
+        <Typography
+          noWrap
+          variant="subtitle2"
+          component="h2"
+          sx={{
+            fontSize: {
+              xs: 10,
+              sm: 'default'
+            }
+          }}
+        >
           {name}
         </Typography>
-        <Typography noWrap variant="subtitle2" sx={{ fontSize: '0.7rem' }}>
+        <Typography
+          noWrap
+          variant="subtitle2"
+          sx={{
+            fontSize: {
+              xs: 8,
+              sm: 10
+            }
+          }}
+        >
           {category}
         </Typography>
       </Grid>
@@ -42,12 +62,26 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
           flexDirection: 'column'
         }}
       >
-        <Typography variant="subtitle2">{current_price}</Typography>
+        <Typography
+          variant="subtitle2"
+          sx={{
+            fontSize: {
+              xs: 9,
+              sm: 'default'
+            }
+          }}
+        >
+          {current_price}
+        </Typography>
         <Typography
           color="primary"
           variant="subtitle2"
           sx={{
-            textDecoration: 'line-through'
+            textDecoration: 'line-through',
+            fontSize: {
+              xs: 9,
+              sm: 'default'
+            }
           }}
         >
           {real_price}
@@ -66,6 +100,12 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
           color="primary"
           icon={<TbDiscount2 />}
           label={`${Math.round(100 - (100 * current_price) / real_price)}%`}
+          sx={{
+            fontSize: {
+              xs: 9,
+              sm: 'default'
+            }
+          }}
         />
       </Grid>
       <Grid
@@ -76,7 +116,17 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
           justifyContent: 'flex-end'
         }}
       >
-        <Button variant="contained">View more</Button>
+        <Button
+          variant="contained"
+          sx={{
+            fontSize: {
+              xs: 9,
+              sm: 'default'
+            }
+          }}
+        >
+          View more
+        </Button>
       </Grid>
     </Grid>
   )
