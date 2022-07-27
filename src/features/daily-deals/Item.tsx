@@ -118,7 +118,8 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
         xs={3}
         sx={{
           display: 'flex',
-          justifyContent: 'flex-end'
+          justifyContent: 'flex-end',
+          alignItems: 'center'
         }}
       >
         <Button
@@ -126,7 +127,10 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
           sx={{
             fontSize: {
               xs: 9,
-              sm: 'default'
+              sm: 12
+            },
+            height: {
+              xs: 30
             }
           }}
         >
