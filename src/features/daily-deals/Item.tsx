@@ -1,8 +1,21 @@
 import React, { FC } from 'react'
-import { Button, Chip, Grid, Typography } from '@mui/material'
+import {
+  Button,
+  Chip as MuiChip,
+  Grid,
+  styled,
+  Typography
+} from '@mui/material'
 import Image from 'mui-image'
 import { TbDiscount2 } from 'react-icons/tb'
 import { useAppSelector } from 'hooks/store'
+
+const Chip = styled(MuiChip)(({ theme }) => ({
+  background: theme.palette.secondary.main,
+  '&:hover': {
+    backgroundColor: theme.palette.secondary.dark
+  }
+}))
 
 const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
   const { dailyDealsPhotoHelper } = useAppSelector((state) => state.photo)

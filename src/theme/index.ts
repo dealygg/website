@@ -10,6 +10,12 @@ export const createTheme = () => {
         dark: 'rgb(112, 147, 156)',
         contrastText: 'rgba(0, 0, 0, 0.87)'
       },
+      secondary: {
+        main: 'rgb(182, 223, 161)',
+        light: 'rgb(196, 229, 179)',
+        dark: 'rgb(127, 156, 112)',
+        contrastText: 'rgba(0, 0, 0, 0.87)'
+      },
       text: {
         primary: 'rgb(238,239,239)',
         secondary: 'rgba(238,239,239,0.8)'

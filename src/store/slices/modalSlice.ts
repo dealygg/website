@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  isSelectPlatformModalOpened: false
+  isSelectPlatformModalOpened: false,
+  isDonationModalOpened: true
 }
 
 export const modalSlice = createSlice({
@@ -10,8 +11,12 @@ export const modalSlice = createSlice({
   reducers: {
     setIsSelectPlatformModalOpened: (state, action) => {
       state.isSelectPlatformModalOpened = action.payload
+    },
+    setIsDonationModalOpened: (state, action) => {
+      state.isDonationModalOpened = action.payload
     }
   }
 })
 
-export const { setIsSelectPlatformModalOpened } = modalSlice.actions
+export const { setIsSelectPlatformModalOpened, setIsDonationModalOpened } =
+  modalSlice.actions

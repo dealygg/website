@@ -13,8 +13,11 @@ import { FaSteam, FaPlaystation, FaXbox } from 'react-icons/fa'
 import { BiDonateHeart } from 'react-icons/bi'
 import { AiFillGift } from 'react-icons/ai'
 import { IoLanguage } from 'react-icons/io5'
-import { SelectPlatformModal } from 'features'
-import { setIsSelectPlatformModalOpened } from 'store/slices/modalSlice'
+import { DonationModal, SelectPlatformModal } from 'features'
+import {
+  setIsSelectPlatformModalOpened,
+  setIsDonationModalOpened
+} from 'store/slices/modalSlice'
 import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { PLATFORMS } from 'consts'
 
@@ -54,7 +57,7 @@ const Header = () => {
           {selectedPlatform === PLATFORMS.PLAYSTATION && <FaPlaystation />}
           {selectedPlatform === PLATFORMS.XBOX && <FaXbox />}
         </IconButton>
-        <IconButton>
+        <IconButton onClick={() => dispatch(setIsDonationModalOpened(true))}>
           <BiDonateHeart />
         </IconButton>
         <IconButton>
@@ -65,6 +68,7 @@ const Header = () => {
         </IconButton>
       </Stack>
       <SelectPlatformModal />
+      <DonationModal />
     </Grid>
   )
 }
