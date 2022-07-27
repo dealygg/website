@@ -9,6 +9,7 @@ import { PLATFORMS } from 'consts'
 export const DailyDeals = () => {
   const { data: dailyDeals, isSuccess } = useDailyDeals()
   const { selectedPlatform } = useAppSelector((state) => state.platform)
+  const { dailyDealsPhotoHelper } = useAppSelector((state) => state.photo)
 
   const dailyDealsToMap = (platform: PLATFORMS) => {
     if (platform === PLATFORMS.STEAM) return dailyDeals.steam_games
@@ -27,8 +28,22 @@ export const DailyDeals = () => {
     <Grid item xs={12}>
       <Card>
         <Grid container>
-          <Grid item xs={12} md={4}>
-            <Image src={isSuccess && backgroundToDisplay(selectedPlatform)} />
+          <Grid
+            item
+            xs={12}
+            md={4}
+            sx={{
+              minHeight: {
+                xs: 200
+              }
+            }}
+          >
+            {dailyDealsPhotoHelper && isSuccess && (
+              <Image
+                src={isSuccess && backgroundToDisplay(selectedPlatform)}
+                duration={1000}
+              />
+            )}
           </Grid>
           <Grid item xs={12} md={8}>
             {isSuccess &&

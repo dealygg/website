@@ -2,8 +2,11 @@ import React, { FC } from 'react'
 import { Button, Chip, Grid, Typography } from '@mui/material'
 import Image from 'mui-image'
 import { TbDiscount2 } from 'react-icons/tb'
+import { useAppSelector } from 'hooks/store'
 
 const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
+  const { dailyDealsPhotoHelper } = useAppSelector((state) => state.photo)
+
   return (
     <Grid
       container
@@ -16,7 +19,9 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
       }}
     >
       <Grid item xs={2} sm={1}>
-        <Image src={icon} height={40} width={40} />
+        {dailyDealsPhotoHelper && (
+          <Image src={icon} height={40} width={40} duration={1000} />
+        )}
       </Grid>
       <Grid
         item

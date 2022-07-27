@@ -16,6 +16,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { PLATFORMS } from 'consts'
 import { setSelectedPlatform } from 'store/slices/platformSlice'
 import { setIsSelectPlatformModalOpened } from 'store/slices/modalSlice'
+import { setDailyDealsPhotoHelper } from 'store/slices/photoSlice'
 
 const Badge = styled(MuiBadge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -159,6 +160,10 @@ export const SelectPlatformModal = () => {
           onClick={() => {
             dispatch(setSelectedPlatform(currentSelectedPlatform))
             dispatch(setIsSelectPlatformModalOpened(false))
+            dispatch(setDailyDealsPhotoHelper(false))
+            setTimeout(() => {
+              dispatch(setDailyDealsPhotoHelper(true))
+            }, 100)
           }}
         >
           Select
