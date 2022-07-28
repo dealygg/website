@@ -61,7 +61,7 @@ export const LanguageCurrencyModal = () => {
           padding: 0
         }}
       >
-        Set language
+        {t('modals.choose-language')}
         <IconButton
           onClick={() => dispatch(setIsLanguageCurrencyModalOpened(false))}
         >
