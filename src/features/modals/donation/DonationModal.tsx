@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Badge as MuiBadge,
   Button,
   Dialog,
   DialogActions,
@@ -13,6 +12,8 @@ import {
 import { MdClose } from 'react-icons/md'
 import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { setIsDonationModalOpened } from 'store/slices/modalSlice'
+import { KO_FI_URL } from 'consts'
+import { useTranslation } from 'react-i18next'
 
 const IconButton = styled(MuiIconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -24,6 +25,7 @@ const IconButton = styled(MuiIconButton)(({ theme }) => ({
 
 export const DonationModal = () => {
   const { isDonationModalOpened } = useAppSelector((state) => state.modal)
+  const { t } = useTranslation('common')
 
   const dispatch = useAppDispatch()
 
@@ -44,7 +46,7 @@ export const DonationModal = () => {
           padding: 0
         }}
       >
-        Support us
+        {t('modals.support-us')}
         <IconButton onClick={() => dispatch(setIsDonationModalOpened(false))}>
           <MdClose size={14} />
         </IconButton>
@@ -56,7 +58,8 @@ export const DonationModal = () => {
             sm: 350
           },
           my: 4,
-          padding: 2
+          padding: 2,
+          pb: 0
         }}
       >
         <Typography variant="subtitle1">
@@ -71,7 +74,7 @@ export const DonationModal = () => {
           padding: 0
         }}
       >
-        <Button>Support us on Ko-fi</Button>
+        <Button href={KO_FI_URL}>{t('modals.support-us-on-kofi')}</Button>
       </DialogActions>
     </Dialog>
   )

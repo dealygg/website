@@ -9,6 +9,7 @@ import {
 import Image from 'mui-image'
 import { TbDiscount2 } from 'react-icons/tb'
 import { useAppSelector } from 'hooks/store'
+import { useTranslation } from 'react-i18next'
 
 const Chip = styled(MuiChip)(({ theme }) => ({
   background: theme.palette.secondary.main,
@@ -19,6 +20,7 @@ const Chip = styled(MuiChip)(({ theme }) => ({
 
 const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
   const { dailyDealsPhotoHelper } = useAppSelector((state) => state.photo)
+  const { t } = useTranslation('common')
 
   return (
     <Grid
@@ -147,7 +149,7 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
             }
           }}
         >
-          View more
+          {t('daily-deals.view-more')}
         </Button>
       </Grid>
     </Grid>

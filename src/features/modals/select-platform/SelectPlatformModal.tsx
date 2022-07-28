@@ -17,6 +17,7 @@ import { PLATFORMS } from 'consts'
 import { setSelectedPlatform } from 'store/slices/platformSlice'
 import { setIsSelectPlatformModalOpened } from 'store/slices/modalSlice'
 import { setDailyDealsPhotoHelper } from 'store/slices/photoSlice'
+import { useTranslation } from 'react-i18next'
 
 const Badge = styled(MuiBadge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -62,6 +63,7 @@ export const SelectPlatformModal = () => {
   )
   const [currentSelectedPlatform, setCurrentSelectedPlatform] =
     useState(selectedPlatform)
+  const { t } = useTranslation('common')
 
   const dispatch = useAppDispatch()
 
@@ -82,7 +84,7 @@ export const SelectPlatformModal = () => {
           padding: 0
         }}
       >
-        Select platform
+        {t('modals.select-platform')}
         <IconButton
           onClick={() => dispatch(setIsSelectPlatformModalOpened(false))}
         >
@@ -154,7 +156,7 @@ export const SelectPlatformModal = () => {
         }}
       >
         <Button onClick={() => dispatch(setIsSelectPlatformModalOpened(false))}>
-          Cancel
+          {t('common.cancel')}
         </Button>
         <Button
           onClick={() => {
@@ -166,7 +168,7 @@ export const SelectPlatformModal = () => {
             }, 100)
           }}
         >
-          Select
+          {t('common.submit')}
         </Button>
       </DialogActions>
     </Dialog>

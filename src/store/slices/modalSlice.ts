@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   isSelectPlatformModalOpened: false,
-  isDonationModalOpened: true
+  isDonationModalOpened: false,
+  isMonthlyGamesModalOpened: false,
+  isLanguageCurrencyModalOpened: false
 }
 
 export const modalSlice = createSlice({
@@ -14,9 +16,19 @@ export const modalSlice = createSlice({
     },
     setIsDonationModalOpened: (state, action) => {
       state.isDonationModalOpened = action.payload
+    },
+    setIsMonthlyGamesModalOpened: (state, action) => {
+      state.isMonthlyGamesModalOpened = action.payload
+    },
+    setIsLanguageCurrencyModalOpened: (state, action) => {
+      state.isLanguageCurrencyModalOpened = action.payload
     }
   }
 })
 
-export const { setIsSelectPlatformModalOpened, setIsDonationModalOpened } =
-  modalSlice.actions
+export const {
+  setIsSelectPlatformModalOpened,
+  setIsDonationModalOpened,
+  setIsMonthlyGamesModalOpened,
+  setIsLanguageCurrencyModalOpened
+} = modalSlice.actions

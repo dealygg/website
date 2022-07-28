@@ -1,0 +1,20 @@
+{
+  "daily-deals": {
+    "view-more": "View more"
+  },
+  "modals": {
+    "select-platform": "Select platform",
+    "support-us": "Support us",
+    "support-us-on-kofi": "Support us on Ko-fi",
+    "monthly-games": "Monthly games",
+    "choose-language": "Choose language"
+  },
+  "common": {
+    "cancel": "Close",
+    "submit": "Submit"
+  },
+  "languages": {
+    "bs": "Bosnian",
+    "en": "English"
+  }
+}

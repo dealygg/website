@@ -13,10 +13,17 @@ import { FaSteam, FaPlaystation, FaXbox } from 'react-icons/fa'
 import { BiDonateHeart } from 'react-icons/bi'
 import { AiFillGift } from 'react-icons/ai'
 import { IoLanguage } from 'react-icons/io5'
-import { DonationModal, SelectPlatformModal } from 'features'
+import {
+  DonationModal,
+  MonthlyGamesModal,
+  SelectPlatformModal,
+  LanguageCurrencyModal
+} from 'features'
 import {
   setIsSelectPlatformModalOpened,
-  setIsDonationModalOpened
+  setIsDonationModalOpened,
+  setIsMonthlyGamesModalOpened,
+  setIsLanguageCurrencyModalOpened
 } from 'store/slices/modalSlice'
 import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { PLATFORMS } from 'consts'
@@ -60,15 +67,21 @@ const Header = () => {
         <IconButton onClick={() => dispatch(setIsDonationModalOpened(true))}>
           <BiDonateHeart />
         </IconButton>
-        <IconButton>
+        <IconButton
+          onClick={() => dispatch(setIsMonthlyGamesModalOpened(true))}
+        >
           <AiFillGift />
         </IconButton>
-        <IconButton>
+        <IconButton
+          onClick={() => dispatch(setIsLanguageCurrencyModalOpened(true))}
+        >
           <IoLanguage />
         </IconButton>
       </Stack>
       <SelectPlatformModal />
       <DonationModal />
+      <MonthlyGamesModal />
+      <LanguageCurrencyModal />
     </Grid>
   )
 }
