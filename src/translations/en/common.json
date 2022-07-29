@@ -5,14 +5,17 @@
   },
   "modals": {
     "select-platform": "Select platform",
-    "support-us": "Support us",
-    "support-us-on-kofi": "Support us on Ko-fi",
+    "support-us": "Support Dealy.gg",
+    "support-text": "Hi - I’m the one standing behind all the daily deals provided for you, to chatch them on time and play your favourite games on Playstation, Xbox and Steam! If you find my updateds useful, you can support me on a daily, monthly or yearly basis!\nAnyways, thank you for being here!",
+    "support-us-on-kofi": "Support Dealy.gg on Ko-fi",
     "monthly-games": "Monthly games",
     "choose-language": "Choose language"
   },
   "common": {
     "cancel": "Close",
-    "submit": "Submit"
+    "submit": "Submit",
+    "subscribe": "Subscribe",
+    "newsletter": "Sing up for Dealy’s special newsletters for an exclusive gaming content delivered straight into your inbox! Join us for special deals published on a daily basis!"
   },
   "languages": {
     "bs": "Bosnian",

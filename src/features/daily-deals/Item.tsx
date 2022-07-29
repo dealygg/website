@@ -18,7 +18,14 @@ const Chip = styled(MuiChip)(({ theme }) => ({
   }
 }))
 
-const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
+const Item: FC<any> = ({
+  name,
+  real_price,
+  current_price,
+  category,
+  icon,
+  url
+}) => {
   const { dailyDealsPhotoHelper } = useAppSelector((state) => state.photo)
   const { t } = useTranslation('common')
 
@@ -139,6 +146,7 @@ const Item: FC<any> = ({ name, real_price, current_price, category, icon }) => {
       >
         <Button
           variant="contained"
+          href={url}
           sx={{
             fontSize: {
               xs: 9,

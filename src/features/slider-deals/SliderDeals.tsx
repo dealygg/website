@@ -4,8 +4,11 @@ import Image from 'mui-image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper'
 import 'swiper/css'
+import { useSliderDeals } from 'hooks/queries/src/useSliderDeals'
 
 export const SliderDeals = () => {
+  const { data: sliderDeals, isSuccess } = useSliderDeals()
+
   return (
     <Card
       sx={{
@@ -20,55 +23,32 @@ export const SliderDeals = () => {
         }}
         modules={[Autoplay]}
       >
-        <SwiperSlide
-          style={{
-            height: 'unset'
-          }}
-        >
-          <Image
-            src="https://geek.hr/wp-content/uploads/2021/09/grand-theft-auto-5.jpg"
-            fit="cover"
-          />
-          <Box
-            sx={{
-              position: 'absolute',
-              bottom: 20,
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center'
-            }}
-          >
-            <Button variant="contained">Just 12$ on Kinguin.com</Button>
-          </Box>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src="https://assets2.rockpapershotgun.com/Stray-cat-art.jpg/BROK/thumbnail/1600x900/format/jpg/quality/80/Stray-cat-art.jpg" />
-          <Box
-            sx={{
-              position: 'absolute',
-              bottom: 20,
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center'
-            }}
-          >
-            <Button variant="contained">Just 12$ on Kinguin.com</Button>
-          </Box>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Image src="https://s1.gaming-cdn.com/images/products/612/orig/battlefield-5-pc-game-origin-cover.jpg?v=1655505217" />
-          <Box
-            sx={{
-              position: 'absolute',
-              bottom: 20,
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'center'
-            }}
-          >
-            <Button variant="contained">Just 12$ on Kinguin.com</Button>
-          </Box>
-        </SwiperSlide>
+        {isSuccess &&
+          sliderDeals.map((slider: any) => {
+            return (
+              <SwiperSlide
+                style={{
+                  height: 'unset'
+                }}
+                key={slider.id}
+              >
+                <Image src={slider.picture} fit="cover" />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 20,
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <Button href={slider.url} variant="contained">
+                    Just {slider.price}€ on {slider.shop_name}
+                  </Button>
+                </Box>
+              </SwiperSlide>
+            )
+          })}
       </Swiper>
     </Card>
   )

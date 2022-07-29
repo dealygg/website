@@ -1,8 +1,10 @@
 import React from 'react'
 import { Box, Button, Card, Typography, useTheme } from '@mui/material'
 import Image from 'mui-image'
+import { useTranslation } from 'react-i18next'
 
 export const Subscribe = () => {
+  const { t } = useTranslation('common')
   const theme = useTheme()
   return (
     <Card
@@ -23,7 +25,7 @@ export const Subscribe = () => {
           top: 0,
           left: 0,
           background: theme.palette.background.paper,
-          opacity: 0.7,
+          opacity: 0.9,
           zIndex: 10
         }}
       />
@@ -42,9 +44,11 @@ export const Subscribe = () => {
         }}
       >
         <Typography variant="subtitle2" sx={{ mb: 1 }}>
-          Our newsletter provides you with bla bla bla bla
+          {t('common.newsletter')}
         </Typography>
-        <Button variant="contained">Subscribe!</Button>
+        <Button href="https://facebook.com/dealygg" variant="contained">
+          {t('common.subscribe')}
+        </Button>
       </Box>
       <Image src="https://www.mordeo.org/files/uploads/2018/06/No-Mans-Sky-Video-Game-HD-Mobile-Wallpaper-950x1689.jpg" />
     </Card>

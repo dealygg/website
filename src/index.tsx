@@ -10,10 +10,12 @@ import i18next from 'i18next'
 
 import common_en from 'translations/en/common.json'
 import common_bs from 'translations/bs/common.json'
+import Cookie from 'js-cookie'
+import { COOKIES, LANGUAGES } from './consts'
 
 i18next.init({
   interpolation: { escapeValue: false },
-  lng: 'en',
+  lng: Cookie.get(COOKIES.LANGUAGE) ?? LANGUAGES.EN,
   resources: {
     en: {
       common: common_en

@@ -58,6 +58,7 @@ export const DailyDeals = () => {
                     current_price={item.current_price}
                     category={item.category}
                     icon={item.icon}
+                    url={item.url}
                   />
                 )
               })}

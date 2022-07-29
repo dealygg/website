@@ -1,22 +1,38 @@
 import React, { useState } from 'react'
 import {
+  Box,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
-  IconButton as MuiIconButton,
-  FormControl,
   Grid,
-  InputLabel,
-  Select as MuiSelect,
-  MenuItem,
-  styled
+  IconButton as MuiIconButton,
+  styled,
+  useTheme
 } from '@mui/material'
 import { MdClose } from 'react-icons/md'
 import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { setIsLanguageCurrencyModalOpened } from 'store/slices/modalSlice'
-import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
+import Cookie from 'js-cookie'
+import { COOKIES, LANGUAGES } from 'consts'
+import Image from 'mui-image'
+import baFlag from 'assets/images/flags/ba.svg'
+import enFlag from 'assets/images/flags/gb.svg'
+
+const languages = [
+  {
+    id: 1,
+    language: LANGUAGES.EN,
+    flag: enFlag
+  },
+  {
+    id: 2,
+    language: LANGUAGES.BA,
+    flag: baFlag
+  }
+]
 
 const IconButton = styled(MuiIconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -26,21 +42,15 @@ const IconButton = styled(MuiIconButton)(({ theme }) => ({
   }
 }))
 
-const Select = styled(MuiSelect)(({ theme }) => ({
-  '& > fieldset': {
-    borderColor: theme.palette.text.primary
-  },
-  '& > svg': {
-    color: theme.palette.text.primary
-  }
-}))
-
 export const LanguageCurrencyModal = () => {
-  const [language, setLanguage] = useState('en')
+  const [language, setLanguage] = useState(
+    Cookie.get(COOKIES.LANGUAGE) ?? LANGUAGES.EN
+  )
   const { isLanguageCurrencyModalOpened } = useAppSelector(
     (state) => state.modal
   )
   const { t } = useTranslation('common')
+  const theme = useTheme()
 
   const dispatch = useAppDispatch()
 
@@ -75,31 +85,51 @@ export const LanguageCurrencyModal = () => {
             sm: 350
           },
           p: 2,
-          pb: 0
+          pb: 0,
+          mt: 2
         }}
       >
-        <Grid container spacing={2} sx={{ my: 2 }}>
-          <Grid item xs={12}>
-            <FormControl sx={{ width: '100%' }} size="small">
-              <InputLabel id="choose-language">
-                {t('modals.choose-language')}
-              </InputLabel>
-              <Select
-                labelId="choose-language"
-                label={t('modals.choose-language')}
-                onChange={(event) => {
-                  // @ts-ignore
-                  i18next.changeLanguage(event.target.value)
-                  // @ts-ignore
-                  setLanguage(event.target.value)
-                }}
-                value={language}
-              >
-                <MenuItem value={'bs'}>{t('languages.bs')}</MenuItem>
-                <MenuItem value={'en'}>{t('languages.en')}</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
+        <Grid container spacing={2}>
+          {languages.map((lang) => {
+            return (
+              <Grid item xs={2}>
+                <Box
+                  sx={{
+                    border: `${
+                      lang.language === language ? '2px' : '1px'
+                    } solid ${
+                      lang.language === language
+                        ? theme.palette.primary.main
+                        : theme.palette.text.primary
+                    }`,
+                    borderRadius: '50%',
+                    padding: '4px',
+                    cursor: 'pointer',
+                    '&:hover': {
+                      border: `2px solid ${theme.palette.primary.main}`
+                    },
+                    transition: 'all 0.4s ease-in-out'
+                  }}
+                  onClick={() => {
+                    // @ts-ignore
+                    i18next.changeLanguage(lang.language)
+                    // @ts-ignore
+                    setLanguage(lang.language)
+                    // @ts-ignore
+                    Cookie.set(COOKIES.LANGUAGE, lang.language)
+                  }}
+                >
+                  <Image
+                    src={lang.flag}
+                    style={{
+                      transition: 'filter 0.4s ease-in-out',
+                      borderRadius: '50%'
+                    }}
+                  />
+                </Box>
+              </Grid>
+            )
+          })}
         </Grid>
       </DialogContent>
       <DialogActions></DialogActions>
