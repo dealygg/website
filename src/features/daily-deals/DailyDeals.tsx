@@ -1,15 +1,17 @@
 import React from 'react'
 import Item from './Item'
-import { Card, Grid } from '@mui/material'
+import { Box, Card, Grid, Typography } from '@mui/material'
 import Image from 'mui-image'
 import { useDailyDeals } from 'hooks/queries'
 import { useAppSelector } from 'hooks/store'
 import { PLATFORMS } from 'consts'
+import { useTranslation } from 'react-i18next'
 
 export const DailyDeals = () => {
   const { data: dailyDeals, isSuccess } = useDailyDeals()
   const { selectedPlatform } = useAppSelector((state) => state.platform)
   const { dailyDealsPhotoHelper } = useAppSelector((state) => state.photo)
+  const { t } = useTranslation('common')
 
   const dailyDealsToMap = (platform: PLATFORMS) => {
     if (platform === PLATFORMS.STEAM) return dailyDeals.steam_games
@@ -62,6 +64,22 @@ export const DailyDeals = () => {
           </Grid>
         </Grid>
       </Card>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          my: 1
+        }}
+      >
+        <Typography
+          variant="subtitle2"
+          sx={{
+            fontSize: 10
+          }}
+        >
+          {t('daily-deals.updates-daily')}
+        </Typography>
+      </Box>
     </Grid>
   )
 }

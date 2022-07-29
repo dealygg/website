@@ -1,6 +1,7 @@
 {
   "daily-deals": {
-    "view-more": "View more"
+    "view-more": "View more",
+    "updates-daily": "Deals are updated on daily basis"
   },
   "modals": {
     "select-platform": "Select platform",
