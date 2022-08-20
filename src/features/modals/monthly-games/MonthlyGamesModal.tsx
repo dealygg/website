@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Box,
   Dialog,
@@ -13,7 +12,6 @@ import Image from 'mui-image'
 import { MdClose } from 'react-icons/md'
 import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { setIsMonthlyGamesModalOpened } from 'store/slices/modalSlice'
-import { useTranslation } from 'react-i18next'
 import { useMonthlyGames } from 'hooks/queries/src/useMonthlyGames'
 
 const IconButton = styled(MuiIconButton)(({ theme }) => ({
@@ -27,7 +25,6 @@ const IconButton = styled(MuiIconButton)(({ theme }) => ({
 export const MonthlyGamesModal = () => {
   const { data: monthlyGames, isSuccess } = useMonthlyGames()
   const { isMonthlyGamesModalOpened } = useAppSelector((state) => state.modal)
-  const { t } = useTranslation('common')
 
   const dispatch = useAppDispatch()
 
@@ -48,7 +45,7 @@ export const MonthlyGamesModal = () => {
           padding: 0
         }}
       >
-        {t('modals.monthly-games')}
+        Monthly games
         <IconButton
           onClick={() => dispatch(setIsMonthlyGamesModalOpened(false))}
         >
@@ -66,10 +63,9 @@ export const MonthlyGamesModal = () => {
         }}
       >
         <Typography variant="subtitle2" sx={{ mb: 2 }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          Each month we’ll be gifting the latest games! If you’d like to win one
+          of the latest games, you can sign in to our newsletter or follow us on
+          Instagram! Make sure to join and follow us.
         </Typography>
         <Grid container spacing={2}>
           {isSuccess &&

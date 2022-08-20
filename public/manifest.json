@@ -1,25 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
+  "name":"Dealy.gg - Your dose of daily deals!",
+  "short_name":"Dealy.gg",
+  "icons":[
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src":"https://daily.gg/192-icon.png",
+      "sizes":"192x192",
+      "type":"image/png"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src":"https://dealy.gg/512-icon.png",
+      "sizes":"512x512",
+      "type":"image/png"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color":"#a1d3df",
+  "background_color":"#0b3438",
+  "display":"standalone"
 }

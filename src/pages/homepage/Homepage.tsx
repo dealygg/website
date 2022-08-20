@@ -1,4 +1,3 @@
-import React from 'react'
 import { DailyDeals, SliderDeals, Subscribe } from 'features'
 import { Grid } from '@mui/material'
 

@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 import { PLATFORMS } from 'consts'
 
 const initialState = {
-  selectedPlatform: PLATFORMS.STEAM
+  selectedPlatform: PLATFORMS.STEAM,
+  isAdForConsoleOpened: false
 }
 
 export const platformSlice = createSlice({
@@ -11,8 +12,12 @@ export const platformSlice = createSlice({
   reducers: {
     setSelectedPlatform: (state, action) => {
       state.selectedPlatform = action.payload
+    },
+    setIsAdForConsoleOpened: (state, action) => {
+      state.isAdForConsoleOpened = action.payload
     }
   }
 })
 
-export const { setSelectedPlatform } = platformSlice.actions
+export const { setSelectedPlatform, setIsAdForConsoleOpened } =
+  platformSlice.actions

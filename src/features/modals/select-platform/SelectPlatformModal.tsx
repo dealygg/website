@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   Badge as MuiBadge,
   Button,
@@ -14,10 +14,12 @@ import { MdClose } from 'react-icons/md'
 import { FaPlaystation, FaSteam, FaXbox } from 'react-icons/fa'
 import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { PLATFORMS } from 'consts'
-import { setSelectedPlatform } from 'store/slices/platformSlice'
+import {
+  setIsAdForConsoleOpened,
+  setSelectedPlatform
+} from 'store/slices/platformSlice'
 import { setIsSelectPlatformModalOpened } from 'store/slices/modalSlice'
 import { setDailyDealsPhotoHelper } from 'store/slices/photoSlice'
-import { useTranslation } from 'react-i18next'
 
 const Badge = styled(MuiBadge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -58,18 +60,17 @@ const IconButton = styled(MuiIconButton)(({ theme }) => ({
 
 export const SelectPlatformModal = () => {
   const { selectedPlatform } = useAppSelector((state) => state.platform)
-  const isSelectPlaftormModalOpened = useAppSelector(
+  const isSelectPlatformModalOpened = useAppSelector(
     (state) => state.modal.isSelectPlatformModalOpened
   )
   const [currentSelectedPlatform, setCurrentSelectedPlatform] =
     useState(selectedPlatform)
-  const { t } = useTranslation('common')
 
   const dispatch = useAppDispatch()
 
   return (
     <Dialog
-      open={isSelectPlaftormModalOpened}
+      open={isSelectPlatformModalOpened}
       onClose={() => dispatch(setIsSelectPlatformModalOpened(false))}
       sx={{
         '& > div > .MuiPaper-root': {
@@ -84,7 +85,7 @@ export const SelectPlatformModal = () => {
           padding: 0
         }}
       >
-        {t('modals.select-platform')}
+        Select platform
         <IconButton
           onClick={() => dispatch(setIsSelectPlatformModalOpened(false))}
         >
@@ -98,7 +99,7 @@ export const SelectPlatformModal = () => {
             sm: 350
           },
           my: 4,
-          padding: 2
+          padding: '16px!important'
         }}
       >
         <Grid container>
@@ -156,19 +157,25 @@ export const SelectPlatformModal = () => {
         }}
       >
         <Button onClick={() => dispatch(setIsSelectPlatformModalOpened(false))}>
-          {t('common.cancel')}
+          Cancel
         </Button>
         <Button
           onClick={() => {
             dispatch(setSelectedPlatform(currentSelectedPlatform))
             dispatch(setIsSelectPlatformModalOpened(false))
+            if (
+              currentSelectedPlatform === PLATFORMS.PLAYSTATION ||
+              currentSelectedPlatform === PLATFORMS.XBOX
+            ) {
+              dispatch(setIsAdForConsoleOpened(true))
+            }
             dispatch(setDailyDealsPhotoHelper(false))
             setTimeout(() => {
               dispatch(setDailyDealsPhotoHelper(true))
             }, 100)
           }}
         >
-          {t('common.submit')}
+          Select
         </Button>
       </DialogActions>
     </Dialog>

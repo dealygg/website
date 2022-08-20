@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Grid,
   IconButton as MuiIconButton,
@@ -20,27 +19,6 @@ const Footer = () => {
   return (
     <Grid item xs={12} sx={{ mt: 2 }}>
       <Grid container>
-        {/*        <Grid item xs={12} display="flex" justifyContent="center">
-          <Stack
-            direction="row"
-            spacing={1}
-            flexWrap="wrap"
-            sx={{
-              '& > p': {
-                fontSize: {
-                  xs: 9,
-                  sm: 'default'
-                }
-              }
-            }}
-          >
-            <Typography>About</Typography>
-            <Typography>FAQ</Typography>
-            <Typography>Contact</Typography>
-            <Typography>Terms of service</Typography>
-            <Typography>Privacy policy</Typography>
-          </Stack>
-        </Grid>*/}
         <Grid
           item
           xs={12}

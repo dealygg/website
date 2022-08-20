@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import {
   Button,
   Chip as MuiChip,
@@ -9,7 +9,6 @@ import {
 import Image from 'mui-image'
 import { TbDiscount2 } from 'react-icons/tb'
 import { useAppSelector } from 'hooks/store'
-import { useTranslation } from 'react-i18next'
 
 const Chip = styled(MuiChip)(({ theme }) => ({
   background: theme.palette.secondary.main,
@@ -27,7 +26,6 @@ const Item: FC<any> = ({
   url
 }) => {
   const { dailyDealsPhotoHelper } = useAppSelector((state) => state.photo)
-  const { t } = useTranslation('common')
 
   return (
     <Grid
@@ -157,7 +155,7 @@ const Item: FC<any> = ({
             }
           }}
         >
-          {t('daily-deals.view-more')}
+          View more
         </Button>
       </Grid>
     </Grid>

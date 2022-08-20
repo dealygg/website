@@ -1,17 +1,18 @@
-import React from 'react'
 import Item from './Item'
-import { Box, Card, Grid, Typography } from '@mui/material'
+import { Alert, Box, Card, Grid, Snackbar, Typography } from '@mui/material'
 import Image from 'mui-image'
 import { useDailyDeals } from 'hooks/queries'
-import { useAppSelector } from 'hooks/store'
+import { useAppDispatch, useAppSelector } from 'hooks/store'
+import { setIsAdForConsoleOpened } from 'store/slices/platformSlice'
 import { PLATFORMS } from 'consts'
-import { useTranslation } from 'react-i18next'
 
 export const DailyDeals = () => {
   const { data: dailyDeals, isSuccess } = useDailyDeals()
-  const { selectedPlatform } = useAppSelector((state) => state.platform)
+  const { selectedPlatform, isAdForConsoleOpened } = useAppSelector(
+    (state) => state.platform
+  )
   const { dailyDealsPhotoHelper } = useAppSelector((state) => state.photo)
-  const { t } = useTranslation('common')
+  const dispatch = useAppDispatch()
 
   const dailyDealsToMap = (platform: PLATFORMS) => {
     if (platform === PLATFORMS.STEAM) return dailyDeals.steam_games
@@ -78,9 +79,30 @@ export const DailyDeals = () => {
             fontSize: 10
           }}
         >
-          {t('daily-deals.updates-daily')}
+          Deals are updated on daily basis.
         </Typography>
       </Box>
+      <Snackbar
+        open={isAdForConsoleOpened}
+        autoHideDuration={4000}
+        onClose={() => dispatch(setIsAdForConsoleOpened(false))}
+        onClick={() =>
+          (window.location.href =
+            selectedPlatform === PLATFORMS.PLAYSTATION
+              ? 'https://www.kinguin.net/listing?active=1&hideUnavailable=0&phrase=playstation%20network%20card&page=0&size=50&sort=bestseller.total,DESC&r=dealygg'
+              : 'https://www.kinguin.net/listing?active=1&hideUnavailable=0&phrase=xbox%20gift&page=0&size=50&sort=bestseller.total,DESCr=dealygg')
+        }
+        sx={{
+          cursor: 'pointer'
+        }}
+      >
+        <Alert severity="info" sx={{ width: '100%' }}>
+          {selectedPlatform === PLATFORMS.PLAYSTATION &&
+            'Buy cheapest PS Network Cards on Kinguin.net'}
+          {selectedPlatform === PLATFORMS.XBOX &&
+            'Buy cheapest XBOX Gift Cards on Kinguin.net'}
+        </Alert>
+      </Snackbar>
     </Grid>
   )
 }

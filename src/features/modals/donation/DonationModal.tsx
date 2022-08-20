@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   Dialog,
@@ -13,7 +12,6 @@ import { MdClose } from 'react-icons/md'
 import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { setIsDonationModalOpened } from 'store/slices/modalSlice'
 import { KO_FI_URL } from 'consts'
-import { useTranslation } from 'react-i18next'
 
 const IconButton = styled(MuiIconButton)(({ theme }) => ({
   color: theme.palette.text.primary,
@@ -25,7 +23,6 @@ const IconButton = styled(MuiIconButton)(({ theme }) => ({
 
 export const DonationModal = () => {
   const { isDonationModalOpened } = useAppSelector((state) => state.modal)
-  const { t } = useTranslation('common')
 
   const dispatch = useAppDispatch()
 
@@ -46,7 +43,7 @@ export const DonationModal = () => {
           padding: 0
         }}
       >
-        {t('modals.support-us')}
+        Support Dealy.gg
         <IconButton onClick={() => dispatch(setIsDonationModalOpened(false))}>
           <MdClose size={14} />
         </IconButton>
@@ -62,14 +59,19 @@ export const DonationModal = () => {
           pb: 0
         }}
       >
-        <Typography variant="subtitle1">{t('modals.support-text')}</Typography>
+        <Typography variant="subtitle1">
+          Hi - I’m the one standing behind all the daily deals provided for you,
+          to catch them on time and play your favourite games on Playstation,
+          Xbox and Steam! If you find my updates useful, you can support me on a
+          daily, monthly or yearly basis!\nAnyways, thank you for being here!
+        </Typography>
       </DialogContent>
       <DialogActions
         sx={{
           padding: 0
         }}
       >
-        <Button href={KO_FI_URL}>{t('modals.support-us-on-kofi')}</Button>
+        <Button href={KO_FI_URL}>Support Dealy.gg on Ko-fi</Button>
       </DialogActions>
     </Dialog>
   )

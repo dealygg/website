@@ -1,5 +1,5 @@
 import { PageLayout } from 'layouts'
-import { Homepage } from 'pages'
+import { Homepage, PrivacyPolicy } from 'pages'
 
 export const routes = [
   {
@@ -11,5 +11,9 @@ export const routes = [
         element: <Homepage />
       }
     ]
+  },
+  {
+    path: '/privacy-policy',
+    element: <PrivacyPolicy />
   }
 ]

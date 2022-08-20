@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import {
   Box,
@@ -12,18 +11,11 @@ import logo from 'assets/images/logo/logo.png'
 import { FaSteam, FaPlaystation, FaXbox } from 'react-icons/fa'
 import { BiDonateHeart } from 'react-icons/bi'
 import { AiFillGift } from 'react-icons/ai'
-import { IoLanguage } from 'react-icons/io5'
-import {
-  DonationModal,
-  MonthlyGamesModal,
-  SelectPlatformModal,
-  LanguageCurrencyModal
-} from 'features'
+import { DonationModal, MonthlyGamesModal, SelectPlatformModal } from 'features'
 import {
   setIsSelectPlatformModalOpened,
   setIsDonationModalOpened,
-  setIsMonthlyGamesModalOpened,
-  setIsLanguageCurrencyModalOpened
+  setIsMonthlyGamesModalOpened
 } from 'store/slices/modalSlice'
 import { useAppDispatch, useAppSelector } from 'hooks/store'
 import { PLATFORMS } from 'consts'
@@ -51,9 +43,20 @@ const Header = () => {
       <Box
         component={Link}
         to="/"
-        sx={{ display: 'flex', alignItems: 'center' }}
+        sx={{
+          display: 'flex',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          maxWidth: 50
+        }}
       >
-        <Image src={logo} height={30} duration={400} easing="ease-in-out" />
+        <Image
+          src={logo}
+          height={30}
+          duration={400}
+          easing="ease-in-out"
+          style={{ objectFit: 'contain' }}
+        />
       </Box>
       <Box flexGrow={1} />
       <Stack direction="row" spacing={1}>
@@ -72,16 +75,10 @@ const Header = () => {
         >
           <AiFillGift />
         </IconButton>
-        <IconButton
-          onClick={() => dispatch(setIsLanguageCurrencyModalOpened(true))}
-        >
-          <IoLanguage />
-        </IconButton>
       </Stack>
       <SelectPlatformModal />
       <DonationModal />
       <MonthlyGamesModal />
-      <LanguageCurrencyModal />
     </Grid>
   )
 }

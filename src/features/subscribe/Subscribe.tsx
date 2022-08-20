@@ -1,10 +1,7 @@
-import React from 'react'
 import { Box, Button, Card, Typography, useTheme } from '@mui/material'
 import Image from 'mui-image'
-import { useTranslation } from 'react-i18next'
 
 export const Subscribe = () => {
-  const { t } = useTranslation('common')
   const theme = useTheme()
   return (
     <Card
@@ -44,10 +41,12 @@ export const Subscribe = () => {
         }}
       >
         <Typography variant="subtitle2" sx={{ mb: 1 }}>
-          {t('common.newsletter')}
+          Sing up for Dealy’s special newsletters for an exclusive gaming
+          content delivered straight into your inbox! Join us for special deals
+          published on a daily basis!
         </Typography>
-        <Button href="https://facebook.com/dealygg" variant="contained">
-          {t('common.subscribe')}
+        <Button href="https://eepurl.com/h7JBTr" variant="contained">
+          Subscribe
         </Button>
       </Box>
       <Image src="https://www.mordeo.org/files/uploads/2018/06/No-Mans-Sky-Video-Game-HD-Mobile-Wallpaper-950x1689.jpg" />
